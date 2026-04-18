@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vidasona — El Ritmo de Tu Vida</title>
+  <meta name="description" content="Un diario de salud privado para mujeres. Registra síntomas, estado de ánimo y energía. Genera un reporte listo para tu médico. Tus datos nunca salen de tu dispositivo." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #FAF8FF; color: #2D1B55; }
+    a { color: inherit; text-decoration: none; }
+    nav { background: #FAF8FF; border-bottom: 1px solid #D4C5EF; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { display: flex; align-items: baseline; gap: 8px; }
+    .nav-logo-name { font-size: 20px; font-weight: 700; color: #4A2C8A; }
+    .nav-logo-tag { font-size: 12px; color: #8A7AAA; font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 12px; }
+    .nav-lang { font-size: 13px; color: #8A7AAA; padding: 4px 10px; border: 1px solid #D4C5EF; border-radius: 20px; }
+    .nav-lang.active { background: #4A2C8A; color: #fff; border-color: #4A2C8A; }
+    .hero { padding: 72px 24px 56px; text-align: center; max-width: 680px; margin: 0 auto; }
+    .hero-eyebrow { font-size: 12px; font-weight: 700; color: #9B6FD4; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+    .hero-title { font-size: 42px; font-weight: 700; color: #2D1B55; line-height: 1.15; margin-bottom: 20px; }
+    .hero-title span { color: #4A2C8A; }
+    .hero-sub { font-size: 18px; color: #8A7AAA; line-height: 1.65; margin-bottom: 36px; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+    .btn-primary { background: #4A2C8A; color: #fff; padding: 14px 28px; border-radius: 28px; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-secondary { background: #F0EBF8; color: #4A2C8A; padding: 14px 28px; border-radius: 28px; font-size: 15px; font-weight: 600; border: 1px solid #D4C5EF; display: inline-flex; align-items: center; gap: 8px; }
+    .hero-privacy { font-size: 12px; color: #B8A8D4; }
+    .screenshots-section { padding: 48px 0 56px; background: #F0EBF8; }
+    .screenshots-label { font-size: 12px; font-weight: 700; color: #9B6FD4; text-transform: uppercase; letter-spacing: 2px; text-align: center; margin-bottom: 32px; }
+    .screenshots-scroll { display: flex; gap: 20px; padding: 0 40px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+    .screenshots-scroll::-webkit-scrollbar { display: none; }
+    .screenshot-item { flex-shrink: 0; scroll-snap-align: start; text-align: center; }
+    .screenshot-item img { height: 500px; width: auto; border-radius: 32px; box-shadow: 0 8px 32px rgba(74,44,138,0.18); display: block; }
+    .screenshot-caption { font-size: 13px; color: #8A7AAA; margin-top: 12px; }
+    .section { padding: 64px 24px; max-width: 900px; margin: 0 auto; }
+    .section-label { font-size: 12px; font-weight: 700; color: #9B6FD4; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; text-align: center; }
+    .section-title { font-size: 32px; font-weight: 700; color: #2D1B55; text-align: center; margin-bottom: 12px; line-height: 1.2; }
+    .section-sub { font-size: 16px; color: #8A7AAA; text-align: center; margin-bottom: 48px; line-height: 1.6; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .feature-card { background: #F0EBF8; border-radius: 18px; padding: 28px; border: 1px solid #D4C5EF; }
+    .feature-icon { font-size: 28px; margin-bottom: 14px; }
+    .feature-title { font-size: 16px; font-weight: 700; color: #2D1B55; margin-bottom: 8px; }
+    .feature-desc { font-size: 14px; color: #8A7AAA; line-height: 1.6; }
+    .privacy-block { background: #2D1B55; color: #EDE5F8; padding: 64px 24px; text-align: center; }
+    .privacy-block .section-label { color: #9B6FD4; }
+    .privacy-block .section-title { color: #EDE5F8; margin-bottom: 24px; }
+    .privacy-block .section-sub { color: #B8A8D4; margin-bottom: 40px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .privacy-pillars { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; max-width: 700px; margin: 0 auto; }
+    .pillar { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 20px 24px; flex: 1; min-width: 160px; }
+    .pillar-icon { font-size: 24px; margin-bottom: 10px; }
+    .pillar-title { font-size: 14px; font-weight: 700; color: #EDE5F8; margin-bottom: 6px; }
+    .pillar-desc { font-size: 12px; color: #B8A8D4; line-height: 1.5; }
+    .report-section { padding: 64px 24px; background: #FAF8FF; }
+    .report-inner { max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .report-text .section-label { text-align: left; }
+    .report-text .section-title { text-align: left; font-size: 28px; margin-bottom: 12px; }
+    .report-text .section-sub { text-align: left; margin-left: 0; margin-bottom: 24px; font-size: 15px; }
+    .report-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .report-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #5A4A7A; line-height: 1.5; }
+    .report-list li::before { content: "✓"; color: #4A2C8A; font-weight: 700; flex-shrink: 0; }
+    .btn-report { display: inline-flex; align-items: center; gap: 8px; background: #F0EBF8; color: #4A2C8A; padding: 12px 22px; border-radius: 20px; font-size: 14px; font-weight: 600; border: 1px solid #D4C5EF; }
+    .report-preview { background: #fff; border-radius: 16px; padding: 24px; border: 1px solid #D4C5EF; box-shadow: 0 4px 24px rgba(74,44,138,0.08); }
+    .report-preview-header { font-size: 13px; font-weight: 700; color: #4A2C8A; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #D4C5EF; }
+    .report-flag { display: flex; align-items: flex-start; gap: 8px; padding: 9px 0; border-bottom: 1px solid #F0EBF8; font-size: 12px; color: #5A4A7A; line-height: 1.4; }
+    .flag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+    .flag-red { background: #C0392B; }
+    .flag-yellow { background: #F0A500; }
+    .flag-blue { background: #4A2C8A; }
+    .report-flag:last-child { border-bottom: none; }
+    .download-section { padding: 80px 24px; text-align: center; max-width: 600px; margin: 0 auto; }
+    .app-store-badge { display: inline-flex; align-items: center; gap: 12px; background: #000; color: #fff; padding: 14px 28px; border-radius: 14px; font-size: 14px; }
+    .app-store-badge span { font-size: 10px; display: block; opacity: 0.7; }
+    .app-store-badge strong { font-size: 17px; display: block; }
+    footer { background: #2D1B55; color: #B8A8D4; padding: 40px 24px; text-align: center; }
+    .footer-logo { font-size: 18px; font-weight: 700; color: #EDE5F8; margin-bottom: 6px; }
+    .footer-tag { font-size: 12px; font-style: italic; margin-bottom: 24px; }
+    .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+    .footer-links a { font-size: 13px; color: #9B6FD4; }
+    .footer-copy { font-size: 12px; color: #8A7AAA; }
+    @media (max-width: 640px) { .hero-title { font-size: 30px; } .report-inner { grid-template-columns: 1fr; } .nav-logo-tag { display: none; } .screenshot-item img { height: 380px; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <span class="nav-logo-name">Vidasona</span>
+    <span class="nav-logo-tag">el ritmo de tu vida</span>
+  </div>
+  <div class="nav-links">
+    <a href="/" class="nav-lang">🇺🇸 EN</a>
+    <a href="/es-mx/" class="nav-lang active">🇲🇽 MX</a>
+    <a href="/es-es/" class="nav-lang">🇪🇸 ES</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <p class="hero-eyebrow">Diario de Salud para Mujeres</p>
+  <h1 class="hero-title">Tu historia de salud,<br><span>en tus propias palabras</span></h1>
+  <p class="hero-sub">Registra cómo te sientes cada día. Lleva control de síntomas, estado de ánimo, energía y sueño. Luego entrégale a tu médico un reporte que realmente muestra lo que has vivido.</p>
+  <div class="hero-actions">
+    <a href="https://apps.apple.com/app/vidasona/id6762493213" class="btn-primary">⬇ Descargar en el App Store</a>
+    <a href="/assets/reports/Vidasona_Sample_Report_MX.pdf" target="_blank" class="btn-secondary">📄 Reporte de ejemplo</a>
+  </div>
+  <p class="hero-privacy">Tus datos nunca salen de tu dispositivo. Sin nube. Sin suscripciones. Sin anuncios.</p>
+</section>
+
+<div class="screenshots-section">
+  <p class="screenshots-label">Mírala en acción</p>
+  <div class="screenshots-scroll">
+    <div class="screenshot-item">
+      <img src="/assets/images/es-mx/screen-1.png" alt="Pantalla de inicio de Vidasona" />
+      <p class="screenshot-caption">Inicio</p>
+    </div>
+    <div class="screenshot-item">
+      <img src="/assets/images/es-mx/screen-2.png" alt="Registro diario de síntomas" />
+      <p class="screenshot-caption">Registro diario</p>
+    </div>
+    <div class="screenshot-item">
+      <img src="/assets/images/es-mx/screen-3.png" alt="Vista del calendario" />
+      <p class="screenshot-caption">Calendario</p>
+    </div>
+    <div class="screenshot-item">
+      <img src="/assets/images/es-mx/screen-4.png" alt="Generador de reportes" />
+      <p class="screenshot-caption">Reporte</p>
+    </div>
+    <div class="screenshot-item">
+      <img src="/assets/images/es-mx/screen-5.png" alt="Configuración y módulos" />
+      <p class="screenshot-caption">Configuración</p>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <p class="section-label">Lo que puedes registrar</p>
+  <h2 class="section-title">Todo lo que importa para ti</h2>
+  <p class="section-sub">Vidasona cubre cada etapa de la salud de la mujer — desde el ciclo hasta la perimenopausia, el embarazo y más.</p>
+  <div class="features-grid">
+    <div class="feature-card"><div class="feature-icon">🌸</div><h3 class="feature-title">Ciclo y Flujo</h3><p class="feature-desc">Registra tu periodo, intensidad del flujo, manchado y síntomas del ciclo con toques simples cada día.</p></div>
+    <div class="feature-card"><div class="feature-icon">🌙</div><h3 class="feature-title">Perimenopausia y Menopausia</h3><p class="feature-desc">Bochornos, sudoración nocturna, niebla mental, cambios de humor — regístralo todo sin tecnicismos.</p></div>
+    <div class="feature-card"><div class="feature-icon">🤰</div><h3 class="feature-title">Embarazo</h3><p class="feature-desc">Sigue tus síntomas en cada trimestre. Náuseas, fatiga, presión pélvica, movimientos del bebé y más.</p></div>
+    <div class="feature-card"><div class="feature-icon">😴</div><h3 class="feature-title">Sueño y Energía</h3><p class="feature-desc">Registra la calidad y horas de sueño cada noche. Lleva control de tu energía y descubre patrones.</p></div>
+    <div class="feature-card"><div class="feature-icon">🏃</div><h3 class="feature-title">Ejercicio y Actividad</h3><p class="feature-desc">Registra caminatas, yoga, fuerza y más. Ve cómo la actividad se relaciona con tu ánimo y energía.</p></div>
+    <div class="feature-card"><div class="feature-icon">✍️</div><h3 class="feature-title">Tus Propias Palabras</h3><p class="feature-desc">Agrega síntomas personalizados en tu idioma. Aparecen exactamente como los escribiste — en tu registro y reportes.</p></div>
+  </div>
+</section>
+
+<div class="privacy-block">
+  <p class="section-label">Diseñada diferente</p>
+  <h2 class="section-title">Tu privacidad es el producto</h2>
+  <p class="section-sub">La mayoría de las apps de salud venden tus datos. Vidasona no puede — porque tus datos nunca salen de tu teléfono. No es una política. Es cómo está construida la app.</p>
+  <div class="privacy-pillars">
+    <div class="pillar"><div class="pillar-icon">🔒</div><p class="pillar-title">Solo en tu dispositivo</p><p class="pillar-desc">Datos guardados en almacenamiento local cifrado. Sin servidor. Sin nube.</p></div>
+    <div class="pillar"><div class="pillar-icon">🚫</div><p class="pillar-title">Sin cuentas</p><p class="pillar-desc">Sin correo. Sin usuario. Sin perfil. Solo necesitas un PIN.</p></div>
+    <div class="pillar"><div class="pillar-icon">📤</div><p class="pillar-title">Tú controlas lo que compartes</p><p class="pillar-desc">Los reportes se comparten solo cuando tú decides, usando las opciones estándar de tu iPhone.</p></div>
+    <div class="pillar"><div class="pillar-icon">☁️</div><p class="pillar-title">Respaldo en iCloud</p><p class="pillar-desc">Respaldo opcional en tu iCloud personal. Solo tú tienes acceso.</p></div>
+  </div>
+</div>
+
+<section class="report-section">
+  <div class="report-inner">
+    <div class="report-text">
+      <p class="section-label">Reportes listos para tu médico</p>
+      <h2 class="section-title">Por fin — un reporte que tu médico puede usar</h2>
+      <p class="section-sub">Genera un PDF de cualquier rango de fechas. Tu médico ve exactamente lo que has experimentado, ordenado por prioridad.</p>
+      <ul class="report-list">
+        <li>Frecuencia y tendencias de síntomas</li>
+        <li>Elementos urgentes marcados por ti</li>
+        <li>Calidad del sueño y horas por mes</li>
+        <li>Patrones de ánimo y energía</li>
+        <li>Tus entradas del diario (opcional)</li>
+        <li>Preguntas que quieres hacerle a tu médico</li>
+      </ul>
+      <a href="/assets/reports/Vidasona_Sample_Report_MX.pdf" target="_blank" class="btn-report">📄 Descargar reporte de ejemplo</a>
+    </div>
+    <div class="report-preview">
+      <div class="report-preview-header">📋 Resumen para la Cita — Abril 2026</div>
+      <div class="report-flag"><div class="flag-dot flag-red"></div>Bochornos — 12 días en este período, empeorando</div>
+      <div class="report-flag"><div class="flag-dot flag-red"></div>Sueño en descenso — prom. 5.0 hrs, desde 7.1 en enero</div>
+      <div class="report-flag"><div class="flag-dot flag-red"></div>Bolita — primer registro 4 feb, 14 veces en 3 meses</div>
+      <div class="report-flag"><div class="flag-dot flag-yellow"></div>Cambios en la piel — sarpullido notado el 8 mar</div>
+      <div class="report-flag"><div class="flag-dot flag-blue"></div>Pregunta: ¿Es normal el manchado al dejar las pastillas?</div>
+    </div>
+  </div>
+</section>
+
+<section class="download-section">
+  <p class="section-label">Disponible ahora</p>
+  <h2 class="section-title">Descarga Vidasona</h2>
+  <p class="section-sub" style="margin-bottom: 36px;">Compra única. Sin suscripción. Sin anuncios. Tu diario de salud, tuyo para siempre.</p>
+  <a href="https://apps.apple.com/app/vidasona/id6762493213" class="app-store-badge">
+    🍎<div><span>Descargar en el</span><strong>App Store</strong></div>
+  </a>
+  <p class="hero-privacy" style="margin-top: 20px;">$2.99 · iPhone · iOS 16.0 o posterior</p>
+</section>
+
+<footer>
+  <p class="footer-logo">Vidasona</p>
+  <p class="footer-tag">el ritmo de tu vida</p>
+  <div class="footer-links">
+    <a href="/privacy">Política de Privacidad</a>
+    <a href="mailto:support@vidasona.app">Soporte</a>
+    <a href="/">English</a>
+    <a href="/es-es/">Español (España)</a>
+  </div>
+  <p class="footer-copy">© 2026 HatchApps LLC. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
